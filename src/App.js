@@ -15,14 +15,18 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      const response = await countryApi.getAll();
-      const countryList = response.data;
+    try {
+      (async () => {
+        const response = await countryApi.getAll();
+        const countryList = response.data;
 
-      setCountries(sortBy(countryList, "Country"));
+        setCountries(sortBy(countryList, "Country"));
 
-      setSelectedCountryId("vn");
-    })();
+        setSelectedCountryId("vn");
+      })();
+    } catch (error) {
+      alert("Error from server", error);
+    }
   }, []);
 
   const handleOnChange = (e) => {
@@ -31,16 +35,20 @@ function App() {
 
   useEffect(() => {
     if (selectedCountryId) {
-      (async () => {
-        const { Slug } = countries.find(
-          (country) => country.ISO2.toLowerCase() === selectedCountryId
-        );
-        countryApi.getReportByCountry(Slug).then((response) => {
-          if (response) setReports(response.data);
-        });
+      try {
+        (async () => {
+          const { Slug } = countries.find(
+            (country) => country.ISO2.toLowerCase() === selectedCountryId
+          );
+          countryApi.getReportByCountry(Slug).then((response) => {
+            if (response) setReports(response.data);
+          });
 
-        setLoading(false);
-      })();
+          setLoading(false);
+        })();
+      } catch (error) {
+        alert("Error form server " + error);
+      }
     }
   }, [countries, selectedCountryId]);
 
