@@ -1,6 +1,19 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Demo project [Click here](https://covid-19-tracker-761g7yquj-dat0609.vercel.app/).
+
+###
+
+## Simple react app to tracking COVID-19 on around the world
+
+### Some lib of this project:
+
+- HighCharts, highchart-react-official: to render ui chart
+- axios: call api
+- lodash: sort country
+- moment: get date time
+- material-ui
+- skeleton
 
 ## Available Scripts
 
