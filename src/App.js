@@ -40,9 +40,14 @@ function App() {
           const { Slug } = countries.find(
             (country) => country.ISO2.toLowerCase() === selectedCountryId
           );
-          countryApi.getReportByCountry(Slug).then((response) => {
-            if (response) setReports(response.data);
-          });
+          countryApi
+            .getReportByCountry(Slug)
+            .then((response) => {
+              setReports(response.data);
+            })
+            .catch((error) => {
+              alert(error.message);
+            });
 
           setLoading(false);
         })();
